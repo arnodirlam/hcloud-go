@@ -331,7 +331,16 @@ func (c *Client) buildUserAgent() {
 func dumpRequest(r *http.Request) ([]byte, error) {
 	// Duplicate the request, so we can redact the auth header
 	rDuplicate := r.Clone(context.Background())
-	rDuplicate.Header.Set("Authorization", "REDACTED")
+
+	// Redact auth token, if any
+	if auth := rDuplicate.Header.Get("Authorization"); auth != "" {
+		if strings.HasPrefix(auth, "Bearer ") {
+			auth = "Bearer REDACTED"
+		} else {
+			auth = "REDACTED"
+		}
+		rDuplicate.Header.Set("Authorization", auth)
+	}
 
 	// To get the request body we need to read it before the request was actually sent.
 	// See https://github.com/golang/go/issues/29792
