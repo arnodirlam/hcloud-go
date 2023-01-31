@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/hetznercloud/hcloud-go/hcloud/schema"
+	"github.com/arnodirlam/hcloud-go/hcloud/schema"
 )
 
 func TestNetworkClientGetByID(t *testing.T) {

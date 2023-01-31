@@ -13,7 +13,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/hetznercloud/hcloud-go/hcloud/schema"
+	"github.com/arnodirlam/hcloud-go/hcloud/schema"
 )
 
 func TestLoadBalancerClientGetByID(t *testing.T) {
